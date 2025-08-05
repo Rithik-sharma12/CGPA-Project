@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator - Student Grade Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Pattern -->
+    <div class="background-pattern"></div>
+    
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>CGPA Calculator</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="#calculator" class="nav-link active">Calculator</a>
+                <a href="#guide" class="nav-link">Grade Guide</a>
+                <a href="#history" class="nav-link">History</a>
+                <a href="#about" class="nav-link">About</a>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Calculator Section -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Calculator Setup -->
+            <section id="calculator" class="calculator-section active">
+                <div class="section-header">
+                    <h2>Calculate Your CGPA</h2>
+                    <p>Track your academic performance across semesters</p>
+                </div>
+
+                <!-- Setup Form -->
+                <div class="setup-card">
+                    <h3><i class="fas fa-cog"></i> Setup Your Calculation</h3>
+                    <div class="setup-form">
+                        <div class="form-group">
+                            <label for="numSemesters">
+                                <i class="fas fa-calendar-alt"></i>
+                                Number of Semesters
+                            </label>
+                            <input type="number" id="numSemesters" min="1" max="12" value="1" required>
+                            <small>How many semesters do you want to calculate?</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="calculationType">
+                                <i class="fas fa-calculator"></i>
+                                Calculation Type
+                            </label>
+                            <select id="calculationType">
+                                <option value="semester">Semester GPA</option>
+                                <option value="cumulative">Cumulative CGPA</option>
+                            </select>
+                            <small>Choose between single semester or cumulative calculation</small>
+                        </div>
+                        
+                        <button id="setupBtn" class="btn btn-primary">
+                            <i class="fas fa-play"></i>
+                            Start Calculation
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Semester Input Section -->
+                <div id="semesterInputs" class="semester-inputs" style="display: none;">
+                    <!-- Dynamic semester cards will be inserted here -->
+                </div>
+
+                <!-- Results Section -->
+                <div id="resultsSection" class="results-section" style="display: none;">
+                    <div class="results-card">
+                        <h3><i class="fas fa-chart-line"></i> Your Results</h3>
+                        <div class="results-content">
+                            <div class="gpa-display">
+                                <div class="gpa-circle">
+                                    <span id="finalGPA" class="gpa-value">0.00</span>
+                                    <span class="gpa-label">CGPA</span>
+                                </div>
+                            </div>
+                            <div class="results-details">
+                                <div class="result-item">
+                                    <span class="label">Total Credits:</span>
+                                    <span id="totalCredits" class="value">0</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="label">Total Grade Points:</span>
+                                    <span id="totalGradePoints" class="value">0</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="label">Grade:</span>
+                                    <span id="letterGrade" class="value grade-badge">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button id="saveResultBtn" class="btn btn-success">
+                                <i class="fas fa-save"></i>
+                                Save Result
+                            </button>
+                            <button id="printResultBtn" class="btn btn-info">
+                                <i class="fas fa-print"></i>
+                                Print Result
+                            </button>
+                            <button id="resetBtn" class="btn btn-secondary">
+                                <i class="fas fa-refresh"></i>
+                                New Calculation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grade Guide Section -->
+            <section id="guide" class="guide-section">
+                <div class="section-header">
+                    <h2>Grading System Guide</h2>
+                    <p>Understanding your grade points and performance levels</p>
+                </div>
+
+                <div class="guide-content">
+                    <div class="grade-table-card">
+                        <h3><i class="fas fa-table"></i> Grade Point System</h3>
+                        <div class="grade-table">
+                            <div class="table-header">
+                                <div class="col">Grade</div>
+                                <div class="col">Points</div>
+                                <div class="col">Percentage</div>
+                                <div class="col">Performance</div>
+                            </div>
+                            <div class="table-row grade-o">
+                                <div class="col grade-cell">O</div>
+                                <div class="col">10</div>
+                                <div class="col">90-100%</div>
+                                <div class="col">Outstanding</div>
+                            </div>
+                            <div class="table-row grade-a-plus">
+                                <div class="col grade-cell">A+</div>
+                                <div class="col">9</div>
+                                <div class="col">80-89%</div>
+                                <div class="col">Excellent</div>
+                            </div>
+                            <div class="table-row grade-a">
+                                <div class="col grade-cell">A</div>
+                                <div class="col">8</div>
+                                <div class="col">70-79%</div>
+                                <div class="col">Very Good</div>
+                            </div>
+                            <div class="table-row grade-b-plus">
+                                <div class="col grade-cell">B+</div>
+                                <div class="col">7</div>
+                                <div class="col">60-69%</div>
+                                <div class="col">Good</div>
+                            </div>
+                            <div class="table-row grade-b">
+                                <div class="col grade-cell">B</div>
+                                <div class="col">6</div>
+                                <div class="col">50-59%</div>
+                                <div class="col">Average</div>
+                            </div>
+                            <div class="table-row grade-c">
+                                <div class="col grade-cell">C</div>
+                                <div class="col">5</div>
+                                <div class="col">40-49%</div>
+                                <div class="col">Below Average</div>
+                            </div>
+                            <div class="table-row grade-f">
+                                <div class="col grade-cell">F</div>
+                                <div class="col">0</div>
+                                <div class="col">Below 40%</div>
+                                <div class="col">Failed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculation-guide">
+                        <h3><i class="fas fa-formula"></i> How CGPA is Calculated</h3>
+                        <div class="formula-card">
+                            <div class="formula">
+                                <span class="formula-text">CGPA = </span>
+                                <div class="fraction">
+                                    <div class="numerator">Σ (Grade Points × Credits)</div>
+                                    <div class="denominator">Σ Total Credits</div>
+                                </div>
+                            </div>
+                            <div class="example">
+                                <h4>Example:</h4>
+                                <p>Subject 1: Grade A (8 points) × 3 credits = 24 grade points</p>
+                                <p>Subject 2: Grade B+ (7 points) × 4 credits = 28 grade points</p>
+                                <p>Total Grade Points: 52, Total Credits: 7</p>
+                                <p><strong>CGPA = 52 ÷ 7 = 7.43</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history" class="history-section">
+                <div class="section-header">
+                    <h2>Calculation History</h2>
+                    <p>View and manage your saved CGPA calculations</p>
+                </div>
+
+                <div class="history-content">
+                    <div class="history-controls">
+                        <button id="clearHistoryBtn" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                            Clear All History
+                        </button>
+                        <button id="exportHistoryBtn" class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            Export as CSV
+                        </button>
+                    </div>
+                    
+                    <div id="historyList" class="history-list">
+                        <div class="empty-history">
+                            <i class="fas fa-clipboard-list"></i>
+                            <p>No calculations saved yet</p>
+                            <small>Your saved CGPA calculations will appear here</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="about-section">
+                <div class="section-header">
+                    <h2>About CGPA Calculator</h2>
+                    <p>Your reliable academic performance tracking tool</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-card">
+                        <h3><i class="fas fa-info-circle"></i> What is CGPA?</h3>
+                        <p>Cumulative Grade Point Average (CGPA) is a grading system used to evaluate your overall academic performance. It's calculated by taking the average of grade points obtained in all subjects, considering the credit hours of each subject.</p>
+                    </div>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-calculator"></i>
+                            <h4>Accurate Calculations</h4>
+                            <p>Precise CGPA and GPA calculations following standard academic formulas</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <i class="fas fa-save"></i>
+                            <h4>Save & Track</h4>
+                            <p>Save your calculations and track your academic progress over time</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Mobile Friendly</h4>
+                            <p>Access your CGPA calculator from any device, anywhere</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Visual Results</h4>
+                            <p>Clear visual representation of your academic performance</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3><i class="fas fa-graduation-cap"></i> CGPA Calculator</h3>
+                    <p>Helping students track their academic progress with accurate CGPA calculations.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#calculator">Calculator</a>
+                    <a href="#guide">Grade Guide</a>
+                    <a href="#history">History</a>
+                    <a href="#about">About</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Support</h4>
+                    <p>Need help with calculations?</p>
+                    <a href="mailto:support@cgpacalc.com">support@cgpacalc.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CGPA Calculator. Built for students, by students.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
